@@ -20,7 +20,7 @@ chunks = [beat_intervals[i : i+6]
 print(chunks)
 
 #find bpm of each chunck
-chunk_bpms = [float(np.mean(60 / chunk) for chunk in chunks)]
+chunk_bpms = [float(np.mean60 / chunk) for chunk in chunks]
 
 bpm_list = [chunk_bpms]
 print(chunk_bpms)
