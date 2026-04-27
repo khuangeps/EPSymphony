@@ -1,1 +1,10 @@
 audio analysis results
+
+session_data = {
+"audio_file": audio_filename,
+"pdf_file": pdf_filename,
+"tempo": float(audio_data["tempo"]),
+"beat_times": audio_data["beat_times"],
+"measure_times": measure_times.tolist() if hasattr(measure_times, "tolist") else measure_times,
+"measure_positions": measure_positions
+}
