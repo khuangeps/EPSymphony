@@ -1,1 +1,36 @@
+{
+    "session_id": {
+        "audio_file": "audio.wav",
+        "pdf_file": "sheet.pdf",
+        "tempo": [...
+        ],
+        "beat_times": [...
+        ],
+        "measure_times": [...
+        ],
+        "measure_positions": [...
+        ]
+    }
+}
 
+import json
+
+def load_sessions():
+    try:
+        with open("backend/storage/sessions.json",
+"r") as f:
+            return json.load(f)
+    except:
+        return {}
+
+def save_session(session_id, session_data):
+    sessions = load_sessions()
+
+    sessions[session_id
+] = session_data
+
+    with open("backend/storage/sessions.json",
+"w") as f:
+        json.dump(sessions, f, indent=4)
+
+        
