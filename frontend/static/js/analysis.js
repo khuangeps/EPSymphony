@@ -9,12 +9,12 @@ async function loadScore() {
         backend: "svg"
     });
 
-    await osmd.load("test.musicxml");
+    await osmd.load("../static/music/MozartPianoSonata.mxl");
     osmd.render();
+}
 
-    function startPolling() {
-        console.log("Start button clicked");
-    }
+function startPolling() {
+    console.log("Start button clicked");
 }
 
 loadScore();
