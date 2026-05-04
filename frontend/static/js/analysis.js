@@ -11,6 +11,10 @@ async function loadScore() {
 
     await osmd.load("test.musicxml");
     osmd.render();
+
+    function startPolling() {
+        console.log("Start button clicked");
+    }
 }
 
 loadScore();
