@@ -1,11 +1,11 @@
 alert("analysis.js loaded");
 console.log("analysis.js loaded")
 
-let osmd;
+window.osmd = null; //to avoid conflict with let osmd
 let currentMeasure = 1;
 
 function getMeasuresByPage() {
-    const pages = osmd.GraphicSheet.MusicPages;
+    const pages = window.osmd.GraphicSheet.MusicPages;
     const result = [];
 
     pages.forEach((page, pageIndex) => {
@@ -34,23 +34,19 @@ function getMeasuresByPage() {
 async function loadScore() {
     const container = document.getElementById("score-container");
 
-    osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay(container, {
+    window.osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay(container, {
         autoResize: true,
         backend: "svg"
     });
 
-    await osmd.load("../static/music/MozartPianoSonata.mxl");
-    osmd.render();
+    await window.osmd.load("../static/music/MozartPianoSonata.mxl");
+    window.osmd.render();
 
-    console.log(osmd.GraphicSheet);
-    console.log(osmd.GraphicSheet.MusicPages);
+    console.log(window.osmd.GraphicSheet);
+    console.log(window.osmd.GraphicSheet.MusicPages);
 
     const pages = getMeasuresByPage();
     console.log(pages);
-}
-
-function startPolling() {
-    console.log("Start button clicked");
 }
 
 loadScore();
