@@ -85,7 +85,7 @@ async function parseMusicXML(path) {
                 }
             }
             if (!isChord) {
-                currentTime += durationBeats; ++
+                currentTime += durationBeats;
             }
         });
     });
