@@ -2,16 +2,11 @@
 alert("analysis.js loaded");
 console.log("analysis.js loaded")
 
-let osmd;
-let measurePositions = [];
-let totalMeasures = 0;
-let animationId = null;
-let startTime = null;
-let BPM = 120;
-let beatsPerMeasure = 4;
+window.osmd = null; //to avoid conflict with let osmd
+let currentMeasure = 1;
 
 function getMeasuresByPage() {
-    const pages = osmd.GraphicSheet.MusicPages;
+    const pages = window.osmd.GraphicSheet.MusicPages;
     const result = [];
 
     pages.forEach((page, pageIndex) => {
@@ -49,19 +44,19 @@ async function loadUploadedScore() {
 
     const container = document.getElementById("score-container");
 
-    container.innerHTML = "";
-
-    osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay(container, {
+    window.osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay(container, {
         autoResize: true,
         backend: "svg"
     });
 
-    await osmd.load(file);
-    osmd.render();
+    await window.osmd.load("../static/music/MozartPianoSonata.mxl");
+    window.osmd.render();
 
-    extractMeasurePositions();
+    console.log(window.osmd.GraphicSheet);
+    console.log(window.osmd.GraphicSheet.MusicPages);
 
-    console.log("measure positions:", measurePositions);
+    const pages = getMeasuresByPage();
+    console.log(pages);
 }
 
 loadScore();
